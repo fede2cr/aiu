@@ -49,6 +49,8 @@ def sanitize(inputstr):
         '`',
         '(',
         ')',
+        ' ',
+        '\n',
         'file://',
         'input://'
     ]
@@ -86,7 +88,7 @@ for num in data[0].split():
         fileName = part.get_filename()
         if bool(fileName):
             filePath = os.path.join(DIR_ID, fileName)
-            print(filePath)
+            #print(filePath)
             if not os.path.isfile(filePath):
                 fp = open(filePath, 'wb')
                 fp.write(part.get_payload(decode=True))
@@ -97,15 +99,19 @@ for num in data[0].split():
         if isinstance(response_part, tuple):
             msg = email.message_from_string(response_part[1].decode('utf-8'))
             if msg['subject'] is not None:
-                email_subject = sanitize(msg['subject'])
+                if len(msg['subject']) < 80:
+                    email_subject = sanitize(msg['subject']) + str(uuid.uuid4())
+                else:
+                    # For very large subjects
+                    email_subject = sanitize(msg['subject'][0:30]) + str(uuid.uuid4())
             else:
                 email_subject = "Sin título-" + str(uuid.uuid4())
             email_from = sanitize(msg['from'])
             email_body = msg.get_payload(decode=True)
-            print('From : ' + email_from + '\n')
-            print('Subject : ' + email_subject + '\n')
+            #print('From : ' + email_from + '\n')
+            #print('Subject : ' + email_subject + '\n')
             if email_body is not None:
-                print(email_body)
+                #print(email_body)
                 body = open(DIR_ID + "correo.txt", 'wb')
                 body.write(email_body)
                 body.close()

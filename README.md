@@ -9,6 +9,8 @@ Alfresco Imap Uploader
 email_username="someuser@greencore.co.cr"
 email_password="password"
 email_server="imap.greencore.co.cr"
+email_folder="INBOX"
+WORKDIR="/var/spool/aiu/"
 ```
 
 2. Run the file with crontab, something like 5 minutes seems a good idea.

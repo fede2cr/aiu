@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Elimina archivos con más de 5 días de antiguedad.
 # Evita que directorio spool crezca demasiado, pero da chance de depurar

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Descarga correos y convierte en ZIP
 /usr/bin/python3 /usr/local/aiu/aiu.py

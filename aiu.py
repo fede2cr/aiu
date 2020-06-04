@@ -62,14 +62,14 @@ def sanitize(inputstr):
 
 mail = imaplib.IMAP4_SSL(secrets.email_server, '993')
 mail.login(secrets.email_username, secrets.email_password)
-mail.select('INBOX/aiu')
+mail.select(secrets.email_folder)
 
 typ, data = mail.search(None, 'ALL')
 
 mail_ids = data[0]
 id_list = mail_ids.split()
 
-WORKDIR = "/tmp/aiu"
+WORKDIR = secrets.WORKDIR
 
 for num in data[0].split():
     typ, data = mail.fetch(num, '(RFC822)')

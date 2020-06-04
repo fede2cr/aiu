@@ -7,4 +7,4 @@
 find /var/spool/aiu/ -name \*\.zip -size 102c -exec rm {} \;
 
 # Mueve zips con contenido a carpeta de WebDAV
-find /var/spool/aiu/ -name \*\.zip -exec mv {} /var/spool/ventanilla \;
+find /var/spool/aiu/ -name \*\.zip -exec mv {} /var/spool/ventanilla/00\ VENTANILLA/ \;
